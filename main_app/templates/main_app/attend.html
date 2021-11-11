@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attend</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <h1 class="heading">Attend Class</h1>
+    <div class="container">
+        <p class="w-messsage">By clicking the button below you will be marked present in class</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class="b-attend">Submit</button>
+        </form>
+        {% if status == 2 %}
+        <p>sorry, you can't attend class more than once a day!</p>
+
+        {% endif %} {% if status == 3 %}
+        <p>your account has been created successfully</p>
+
+        {% endif %} {% if status == 0 %}
+        <p>you gotta login first!</p>
+        <a href="{% url 'login' %}">LOGIN</a>
+        <a href="{% url 'register' %}">REGISTER</a> {% endif %}
+
+    </div>
+</body>
+
+</html>
